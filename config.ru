@@ -3,5 +3,5 @@ require_relative "./config/environment"
 
 use Rack::MethodOverride
 use UsersController
-#use TasksController
+use TasksController
 run ApplicationController

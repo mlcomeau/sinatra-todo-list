@@ -1,6 +1,13 @@
 <div>
 <h1>Hello, <%= @user.username %>!</h1>
 
+<h3>Here are your tasks:</h3>
+<% Task.all.each do |task|%>
+<% if task.user_id == current_user.id %>
+<%= task.name %><br>
+<% end %>
+<% end %>
+
 <p><a href="/logout">Log Out.</a></p>
 
 </div>

@@ -11,11 +11,15 @@ class ApplicationController < Sinatra::Base
     use Rack::Flash 
   end
 
+  #root url aka homepage, 
+  #if user is logged in goes to user show view 
+  #if no user logged in goes to home view 
   get '/' do 
-    #what if a user is already logged in? go to user homepage,
-    #need if/else statement 
-    erb :home 
-
+    if logged_in?
+      redirect "/users/#{current_user.id}"
+    else 
+      erb :home 
+    end 
   end 
 
   helpers do 
