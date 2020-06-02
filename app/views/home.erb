@@ -1,7 +1,20 @@
 <div>
-<h1>To Do List</h1>
+<h1>To-Do List</h1>
+<h2>Be productive.</h2>
 
-<p><a href="/login">Log In.</a></p>
+<form action="/login" method="POST">
 
-<p><a href="/signup">Sign Up.</a></p>
+<p class="flash"><%= flash[:message] %></p>
+
+<label for="username">Username:</label>
+<input type="text" name="username" required>
+
+<label for="password">Password:</label>
+<input type="password" name="password" required>
+
+<input type="submit" value="Login" id="Submit">
+
+</form>
 </div>
+
+<p>Haven't started your to-do list? <a href="/signup">Sign Up.</a></p>

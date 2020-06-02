@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         redirect "users/#{@user.id}"
       else
        # flash[:message] = "Incorrect password."
-        redirect "/login"
+        redirect "/"
       end
     end
     
@@ -29,6 +29,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect "users/#{@user.id}"
         else 
+            #flash[:message] = "Please complete all fields."
             redirect "/signup"
         end             
     end 
