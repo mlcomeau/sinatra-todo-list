@@ -1,0 +1,9 @@
+<div>
+<h1>Sign Up</h1>
+<form action="/users" method="POST">
+  <p class="flash"><%= flash[:message] %></p>
+  <p>Username: <input type="text" name="username" value=""></p>
+  <p>Password: <input type="text" name="password" value=""></p>
+  <input type="submit" value="Sign Up">
+</form>
+</div>

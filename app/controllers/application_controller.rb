@@ -12,17 +12,19 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do 
-    if logged_in?
-      redirect "/tasks"
-    end
+    #what if a user is already logged in? go to user homepage,
+    #need if/else statement 
     erb :home 
+
   end 
 
   helpers do 
+    #checks if there is a current user, thus verifying whether a user is logged in 
     def logged_in?
       !!current_user
     end
 
+    #returns the current user or nil if there is no current user 
     def current_user
       @current_user ||= User.find_by(id: session[:user_id])
     end
