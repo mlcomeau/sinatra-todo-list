@@ -37,7 +37,7 @@ class TasksController < ApplicationController
     #allows the owner of the task to render an edit form 
     get '/tasks/:id/edit' do
         set_task 
-        if correct_user?
+        if authorized?(@task)
             erb :'tasks/edit'
         else 
             redirect '/'
@@ -48,7 +48,7 @@ class TasksController < ApplicationController
     patch '/tasks/:id' do 
         set_task
         @task.update(name: params[:name])
-        redirect to '/'
+        redirect '/'
     end 
 
 
@@ -58,10 +58,6 @@ class TasksController < ApplicationController
 
     def set_task
         @task = Task.find(params[:id])
-    end 
-
-    def correct_user?
-        logged_in? && @task.user == current_user
     end 
 
 end 

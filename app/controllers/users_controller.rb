@@ -12,8 +12,8 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         redirect "users/#{@user.id}"
       else
-       # flash[:message] = "Incorrect password."
-        redirect "/"
+        flash[:message] = "Incorrect password."
+        erb :login 
       end
     end
     
@@ -30,8 +30,8 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect "users/#{@user.id}"
         else 
-            #flash[:message] = "Please complete all fields."
-            redirect "/signup"
+            flash[:message] = "Please complete all fields."
+            erb :signup 
         end             
     end 
     
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
     #user show page 
     get '/users/:id' do 
         @user = User.find_by(id: params[:id])
-        erb :"/users/show"
+        erb :'/users/show'
     end 
 
 
