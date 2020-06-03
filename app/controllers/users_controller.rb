@@ -22,7 +22,8 @@ class UsersController < ApplicationController
         erb :signup 
     end 
 
-    #processes signup form, thus creating a new user aka signing up 
+    #processes signup form, thus creating a new user aka signing up
+    #redirect to new users show page  
     post '/users' do
         if params[:username] != "" && params[:password] != ""
             @user = User.create(params)

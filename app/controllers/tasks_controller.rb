@@ -1,5 +1,11 @@
 class TasksController < ApplicationController 
 
+    #shows all tasks 
+    get '/tasks' do 
+        @tasks = Task.all
+        erb :'/tasks/index'
+    end 
+
     #renders form to create a new task 
     get '/tasks/new' do 
         erb :'/tasks/new'
@@ -15,7 +21,7 @@ class TasksController < ApplicationController
 
         if params[:name] != ""
             @task = Task.create(name: params[:name], user_id: current_user.id)
-            redirect "tasks/#{@task.id}"
+            redirect "/tasks/#{ @task.id }"
         else 
             redirect '/tasks/new'
         end 
@@ -23,13 +29,39 @@ class TasksController < ApplicationController
 
     #view a single task 
     get '/tasks/:id' do 
-        @task = Task.find(params[:id])
+        set_task
         erb :'tasks/show'
     end 
 
-    get '/tasks/:id/edit' do 
-        erb :'tasks/edit'
+    #makes sure the task belongs to the current user 
+    #allows the owner of the task to render an edit form 
+    get '/tasks/:id/edit' do
+        set_task 
+        if correct_user?
+            erb :'tasks/edit'
+        else 
+            redirect '/'
+        end 
     end
     
-    post '/tasks/:id/edit' do 
+    #processes edit form and takes user back to home page 
+    patch '/tasks/:id' do 
+        set_task
+        @task.update(name: params[:name])
+        redirect to '/'
+    end 
+
+
+
+
+    private 
+
+    def set_task
+        @task = Task.find(params[:id])
+    end 
+
+    def correct_user?
+        logged_in? && @task.user == current_user
+    end 
+
 end 

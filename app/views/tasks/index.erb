@@ -1,1 +1,7 @@
-index.erb
+<h1>Index page for Tasks</h1>
+
+<% @tasks.each do |task|%>
+    <h3><a href="/tasks/<%= task.id %>"><%= task.name %></a></h3>
+    <p><%= task.user.username %>
+    <br><br>
+<% end %>
