@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     post '/users' do
         if User.exists?(username: params[:username])
             flash[:message] = "Sorry, that username is not available."
-            erb :signup 
+            redirect '/signup' 
         elsif params[:username] != "" && params[:password] != ""
             @user = User.create(params)
             session[:user_id] = @user.id

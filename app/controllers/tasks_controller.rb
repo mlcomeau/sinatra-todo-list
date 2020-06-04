@@ -37,7 +37,7 @@ class TasksController < ApplicationController
     #allows the owner of the task to render an edit form 
     get '/tasks/:id/edit' do
         set_task 
-        if authorized?(@task)
+        if authorized?(@task) 
             erb :'tasks/edit'
         else 
             flash[:message] = "You are not authorized to edit that task. "
@@ -48,8 +48,13 @@ class TasksController < ApplicationController
     #processes edit form and takes user back to home page 
     patch '/tasks/:id' do 
         set_task
-        @task.update(name: params[:name])
-        redirect '/'
+        if params[:name] != ""
+            @task.update(name: params[:name])
+            redirect '/'
+        else 
+            flash[:message] = "You need to enter a task."
+            erb :'tasks/edit'
+        end
     end 
 
     delete '/tasks/:id' do 
