@@ -1,9 +1,9 @@
 <p class="flash"><%= flash[:message] %></p>
 
 <h1><%= @task.name %></h1>
-<br><br><br>
+<br>
 <% if authorized?(@task) %>
-    <a href="/tasks/<%= @task.id %>/edit">Edit Task</a><br><br>
+    <a href="/tasks/<%= @task.id %>/edit">Edit Task</a>
 
     <form action="/tasks/<%= @task.id %>/done" method="post">
     <input type="hidden" name="_method" value="patch">
@@ -17,5 +17,4 @@
     <input type="submit" value="Delete">
     </form>
     <br><br>
-    <a href="/">View your to-do list</a>
 <% end %>

@@ -35,6 +35,21 @@
     color: white;
   }
 
+  /* style the flash messages */
+  p.flash {
+    color: #ff6666; 
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  a {
+  background-color: #808080;
+  color: white;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+  }
+
     </style>
 
 
@@ -47,6 +62,7 @@
     <header>
       <% if logged_in? %>
         <div class="topnav">
+        <a href="/">Todo List</a>
         <a href="/tasks/new">Create New Task</a>
         <a href="/logout">Logout</a>       
         </div>
@@ -60,7 +76,7 @@
 
 
     <footer class="branding">
-        <small>&copy; 2020 <strong>To-Do List</strong></small>
+        <small><strong>DONE.</strong></small>
     </footer>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
