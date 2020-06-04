@@ -19,7 +19,7 @@ class TasksController < ApplicationController
         redirect_if_not_logged_in
 
         if params[:name] != ""
-            @task = Task.create(name: params[:name], user_id: current_user.id)
+            @task = Task.create(name: params[:name], user_id: current_user.id, status: "in progress")
             flash[:message] = "Task creation successful!" if @task.id 
             redirect "/tasks/#{ @task.id }"
         else 
@@ -58,6 +58,13 @@ class TasksController < ApplicationController
             flash[:message] = "You need to enter a task."
             redirect "/tasks/#{@task.id}/edit"
         end
+    end 
+
+    patch '/tasks/:id/done' do 
+        set_task 
+        @task.update(status: "done")
+        flash[:message] = "You finished a task! Nice work!"
+        redirect '/'
     end 
 
     delete '/tasks/:id' do 

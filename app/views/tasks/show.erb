@@ -3,7 +3,14 @@
 <h1><%= @task.name %></h1>
 <br><br><br>
 <% if authorized?(@task) %>
-    <a href="/tasks/<%= @task.id %>/edit">Edit Task</a>
+    <a href="/tasks/<%= @task.id %>/edit">Edit Task</a><br><br>
+
+    <form action="/tasks/<%= @task.id %>/done" method="post">
+    <input type="hidden" name="_method" value="patch">
+    <input type="submit" value="This task is DONE.">
+    </form>
+
+
     <br><br>
     <form action="/tasks/<%= @task.id %>" method="post">
     <input id="hidden" type="hidden" name="_method" value="delete">
