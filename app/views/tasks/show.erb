@@ -12,7 +12,7 @@
 
 
     <br><br>
-    <form action="/tasks/<%= @task.id %>" method="post">
+    <form action="/tasks/<%= @task.id %>" method="post" onSubmit="return confirm('Are you sure you wish to delete this task?')">
     <input id="hidden" type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete">
     </form>
