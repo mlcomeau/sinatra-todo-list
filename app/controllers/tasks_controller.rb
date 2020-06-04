@@ -1,6 +1,6 @@
 class TasksController < ApplicationController 
 
-    #shows all tasks 
+    #shows all tasks/index page  
     get '/tasks' do 
         @tasks = Task.all
         erb :'/tasks/index'
@@ -8,6 +8,7 @@ class TasksController < ApplicationController
 
     #renders form to create a new task 
     get '/tasks/new' do 
+        redirect_if_not_logged_in
         erb :'/tasks/new'
     end
     
@@ -15,20 +16,20 @@ class TasksController < ApplicationController
     #processes new task form, creates a new task that is associated with the current user 
     #if user does not fill out a task name they are redirected back to the new task form and task is not created 
     post '/tasks' do 
-        if !logged_in? 
-            redirect '/'
-        end 
+        redirect_if_not_logged_in
 
         if params[:name] != ""
             @task = Task.create(name: params[:name], user_id: current_user.id)
             redirect "/tasks/#{ @task.id }"
         else 
+            flash[:message] = "You need to enter a task."
             redirect '/tasks/new'
         end 
     end 
 
     #view a single task 
     get '/tasks/:id' do 
+        redirect_if_not_logged_in
         set_task
         erb :'tasks/show'
     end 
@@ -36,6 +37,7 @@ class TasksController < ApplicationController
     #makes sure the task belongs to the current user 
     #allows the owner of the task to render an edit form 
     get '/tasks/:id/edit' do
+        redirect_if_not_logged_in
         set_task 
         if authorized?(@task) 
             erb :'tasks/edit'
@@ -53,7 +55,7 @@ class TasksController < ApplicationController
             redirect '/'
         else 
             flash[:message] = "You need to enter a task."
-            erb :'tasks/edit'
+            redirect "/tasks/#{@task.id}/edit"
         end
     end 
 
