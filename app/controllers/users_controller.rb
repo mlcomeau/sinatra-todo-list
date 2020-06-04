@@ -22,15 +22,18 @@ class UsersController < ApplicationController
         erb :signup 
     end 
 
+    #makes sure the username does not already exist 
     #processes signup form, thus creating a new user aka signing up
     #redirect to new users show page  
     post '/users' do
-        if params[:username] != "" && params[:password] != ""
+        if User.exists?(username: params[:username])
+            flash[:message] = "Sorry, that username is not available."
+            erb :signup 
+        elsif params[:username] != "" && params[:password] != ""
             @user = User.create(params)
             session[:user_id] = @user.id
             redirect "users/#{@user.id}"
         else 
-            flash[:message] = "Please complete all fields."
             redirect '/signup' 
         end             
     end 

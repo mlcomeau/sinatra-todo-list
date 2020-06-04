@@ -23,7 +23,6 @@ class TasksController < ApplicationController
             @task = Task.create(name: params[:name], user_id: current_user.id)
             redirect "/tasks/#{ @task.id }"
         else 
-            flash[:message] = "Oops! Looks like you forgot something..."
             redirect '/tasks/new'
         end 
     end 
