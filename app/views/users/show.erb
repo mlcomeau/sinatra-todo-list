@@ -1,5 +1,7 @@
 <div>
-<h1>Hello, <%= @user.username %>!</h1>
+<h1><u>Hello, <%= @user.username %>!</u></h1>
+<br><br>
+<p class="flash"><%= flash[:message] %></p>
 
 <h3>Here are your tasks:</h3>
 <% Task.all.each do |task|%>

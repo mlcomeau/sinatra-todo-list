@@ -13,7 +13,7 @@ class UsersController < ApplicationController
         redirect "users/#{@user.id}"
       else
         flash[:message] = "Incorrect password."
-        erb :login 
+        redirect '/'
       end
     end
     
@@ -31,14 +31,15 @@ class UsersController < ApplicationController
             redirect "users/#{@user.id}"
         else 
             flash[:message] = "Please complete all fields."
-            erb :signup 
+            redirect '/signup' 
         end             
     end 
     
     #logs the user out by clearing the session hash 
     get '/logout' do 
         session.clear
-        redirect '/'
+        flash[:message] = "You have been logged out."
+        erb :home 
     end 
 
     #user show page 

@@ -23,6 +23,7 @@ class TasksController < ApplicationController
             @task = Task.create(name: params[:name], user_id: current_user.id)
             redirect "/tasks/#{ @task.id }"
         else 
+            flash[:message] = "Oops! Looks like you forgot something..."
             redirect '/tasks/new'
         end 
     end 
@@ -40,6 +41,7 @@ class TasksController < ApplicationController
         if authorized?(@task)
             erb :'tasks/edit'
         else 
+            flash[:message] = "You are not authorized to edit that task. "
             redirect '/'
         end 
     end
@@ -49,6 +51,17 @@ class TasksController < ApplicationController
         set_task
         @task.update(name: params[:name])
         redirect '/'
+    end 
+
+    delete '/tasks/:id' do 
+        set_task 
+        if authorized?(@task)
+            @task.destroy 
+            redirect '/'
+        else
+            flash[:message] = "You are not authorized to edit that task."
+            redirect '/' 
+        end 
     end 
 
 

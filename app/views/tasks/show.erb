@@ -4,7 +4,10 @@
 <% if authorized?(@task) %>
     <a href="/tasks/<%= @task.id %>/edit">Edit Task</a>
     <br><br>
-    <a href="">Delete Task</a>
+    <form action="/tasks/<%= @task.id %>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete">
+    </form>
     <br><br>
     <a href="/">View your to-do list</a>
 <% end %>
