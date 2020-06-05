@@ -1,25 +1,30 @@
-<div>
-<h1><u>Hello, <%= @user.username %>!</u></h1>
+<div class="greeting">
+     <h1><i>Hello, <%= @user.username %>!</i></h1>
+     <p class="flash"><%= flash[:message] %></p>
+</div>
+
+<div class="container">
+     <div class="first-box">
+     <u>To be done</u><br><br>
+     <% Task.all.each do |task|%>
+     <% if task.user_id == current_user.id && task.status == "in progress" %>
+     <a class="links" href="/tasks/<%= task.id %>"><%= task.name %></a><br><br>
+     <% end %>
+     <% end %>
+     </div>
+
+     <div class="second-box">
+     <u>DONE!</u><br><br>
+     <% Task.all.each do |task|%>
+     <% if task.user_id == current_user.id && task.status == "done" %>
+     <s><%= task.name %></s><br><br>
+     <% end %>
+     <% end %>
+     </div>
+
 <br><br>
-<p class="flash"><%= flash[:message] %></p>
 
-<h3>Your In Progress Tasks:</h3>
-<% Task.all.each do |task|%>
-<% if task.user_id == current_user.id && task.status == "in progress" %>
-<a href="/tasks/<%= task.id %>"><%= task.name %></a><br><br>
-<!-- have edit button, maybe a pencil image, would render the task edit form 
-     have delete button, maybe a garbage can image, would display a warning and then destroy task  -->
-<% end %>
-<% end %>
-
-<br><br><br>
-
-<h3>Your DONE Tasks:</h3>
-<% Task.all.each do |task|%>
-<% if task.user_id == current_user.id && task.status == "done" %>
-<s><%= task.name %></s><br>
-
-<% end %>
-<% end %>
-
+     <div class="third-box">
+     This is where the number of tasks done goes...
+     </div>
 </div>

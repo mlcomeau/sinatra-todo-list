@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     get '/logout' do 
         session.clear
         flash[:message] = "You have been logged out."
-        erb :home 
+        redirect '/' 
     end 
 
     #user show page 

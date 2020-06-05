@@ -21,7 +21,7 @@ class TasksController < ApplicationController
         if params[:name] != ""
             @task = Task.create(name: params[:name], user_id: current_user.id, status: "in progress")
             flash[:message] = "Task creation successful!" if @task.id 
-            redirect "/tasks/#{ @task.id }"
+            redirect "/"
         else 
             flash[:message] = "You need to enter a task."
             redirect '/tasks/new'

@@ -1,10 +1,10 @@
-<div>
-<h1>Sign Up</h1>
-<form action="/users" method="POST">
+<div class="signup">
+<h1>Sign Up and Get Started!</h1>
+<form action="/users" method="POST" class="purpleform">
   <p class="flash"><%= flash[:message] %></p>
-  <p>Username: <input type="text" name="username" value="" required></p>
-  <p>Password: <input type="text" name="password" value="" required></p>
+  <input type="text" name="username" placeholder="username" value="" required></p>
+  <input type="text" name="password" placeholder="password" value="" required></p>
   <input type="submit" value="Sign Up">
 </form>
-<a href="/">Back</a>
+<a href="/" id="def">Back</a><br>
 </div>
