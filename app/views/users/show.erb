@@ -25,6 +25,13 @@
 <br><br>
 
      <div class="third-box">
-     This is where the number of tasks done goes...
+     <% done_count = Task.all.count { |t| t.user_id == current_user.id && t.status == "done"}%>
+     <% if done_count == 0 %>
+          Looks like its time to get your first task done!
+     <% elsif done_count == 1 %>
+          First task done!
+     <% else %>
+          You've done <%= done_count %> tasks! Nice work!
+     <% end %>
      </div>
 </div>
