@@ -57,6 +57,9 @@
     font-weight: 700;
     margin-bottom: 10px;
     bottom: 1px;
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    font-weight: bold;
   }
 
   /* style buttons */
@@ -72,29 +75,8 @@
   a#def:hover {
     cursor: pointer;
   }
-
-  /* style forms for not logged in  */
   
-  .signup {
-    text-align: center;
-  }
-
-  .purpleform {
-    background-color: #ccccff;
-    -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
-    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
-    box-shadow: 0 0 10px rgba(0,0,0,.3);
-    margin: 9vh auto 16px auto;
-    max-width: 500px;
-    padding: 2.25%;
-    width: 85%;
-    text-align: center;
-    top: 10vh;
-    border-radius: 5px;
-  }
-
-
-  /* style forms for logged in */
+  /* style forms  */
   .greenform {
     background-color: #9BD770;
     color: #375F1B;
@@ -189,12 +171,13 @@
 
   .task-container {
     text-align: center;
+    height: auto;
   }
 
   .task {
     background-color: #375F1B;
     width: 200px;
-    height: 300px;
+    height: 450px;
     display: inline-block;
     margin-top: 40px;
     border-radius: 10px;
@@ -203,13 +186,6 @@
    h3#name {
     color: white;
     text-transform: uppercase;
-  }
-
-  /* style footer */ 
-  .branding {
-    background-color: #1B3409;
-    color: #66B032;
-    text-align: center;
   }
 
     </style>
@@ -230,11 +206,6 @@
     <div class="main">  
       <%= yield %>
     </div>
-
-
-    <footer class="branding">
-        <small><strong>TO DO LIST!</strong></small>
-    </footer>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <!--[if lt IE 7]>
