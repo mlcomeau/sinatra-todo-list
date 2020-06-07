@@ -60,6 +60,7 @@ class TasksController < ApplicationController
         end
     end 
 
+    #changes task status from in progress to done 
     patch '/tasks/:id/done' do 
         set_task 
         @task.update(status: "done")
@@ -67,6 +68,7 @@ class TasksController < ApplicationController
         redirect '/'
     end 
 
+    #deletes a task 
     delete '/tasks/:id' do 
         set_task 
         if authorized?(@task)
@@ -78,14 +80,10 @@ class TasksController < ApplicationController
         end 
     end 
 
-
-
-
     private 
 
     def set_task
         @task = Task.find(params[:id])
     end 
-
 
 end 

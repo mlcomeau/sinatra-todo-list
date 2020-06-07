@@ -11,7 +11,7 @@ class ApplicationController < Sinatra::Base
     register Sinatra::Flash  
   end
 
-  #root url aka homepage, 
+  #root url 
   #if user is logged in goes to user show view 
   #if no user logged in goes to home view 
   get '/' do 

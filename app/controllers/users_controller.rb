@@ -5,7 +5,7 @@ class UsersController < ApplicationController
         erb :login 
     end 
 
-    ##processes login form, thus logging user in 
+    ##processes login form, and logs user in 
     post '/login' do 
       @user = User.find_by(:username => params[:username])
       if @user && @user.authenticate(params[:password])
@@ -50,8 +50,5 @@ class UsersController < ApplicationController
         @user = User.find_by(id: params[:id])
         erb :'/users/show'
     end 
-
-
-
 
 end
