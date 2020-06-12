@@ -6,8 +6,8 @@
 <div class="container">
      <div class="first-box">
      <u>To be done</u><br><br>
-     <% Task.all.each do |task|%>
-     <% if task.user_id == current_user.id && task.status == "in progress" %>
+     <% @user.tasks.all.each do |task|%>
+     <% if task.status == "in progress" %>
      <a class="links" href="/tasks/<%= task.id %>"><%= task.name %></a><br><br>
      <% end %>
      <% end %>
@@ -15,8 +15,8 @@
 
      <div class="second-box">
      <u>DONE!</u><br><br>
-     <% Task.all.each do |task|%>
-     <% if task.user_id == current_user.id && task.status == "done" %>
+     <% @user.tasks.all.each do |task|%>
+     <% if task.status == "done" %>
      <s><%= task.name %></s><br><br>
      <% end %>
      <% end %>

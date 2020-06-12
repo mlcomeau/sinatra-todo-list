@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     
     #renders the signup form 
     get '/signup' do 
-        erb :signup 
+        erb :signup
     end 
 
     #makes sure the username does not already exist 
