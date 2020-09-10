@@ -8,7 +8,7 @@ Fork and clone the ToDo List repo onto your computer. Run bundle install to load
 
 # Usage 
 
-Run the ToDo web application on your local machine bye typing rackup in your terminal. Open your browser and navigate to 'localhost:9292'. The web application will load, you can create a new login, or use the seed data provided. To exit, type 'CTRL + C' to stop the rackup session.
+Run the ToDo web application on your local machine by typing rackup in your terminal. Open your browser and navigate to 'localhost:9292'. The web application will load, you can create a new login, or use the seed data provided. To exit, type 'CTRL + C' to stop the rackup session.
 
 # Contributing 
 
