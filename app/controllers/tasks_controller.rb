@@ -2,7 +2,7 @@ class TasksController < ApplicationController
 
     #shows all tasks/index page  
     get '/tasks' do 
-        @tasks = Task.all
+        @tasks = Task.all.sort_by { |obj| obj.name.downcase }
         erb :'/tasks/index'
     end 
 
